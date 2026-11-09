@@ -102,7 +102,7 @@ window.CONFIG = {
         const lead = {
           nome: nome ? nome.value.trim() : '', whatsapp: '55' + digitos,
           frente: form.dataset.lead, versao: form.dataset.versao || '',
-          origem: q.get('origem') || q.get('utm_source') || '', utm_campaign: q.get('utm_campaign') || '',
+          origem: q.get('origem') || q.get('utm_source') || '', utm_campaign: q.get('utm_campaign') || '', utm_content: q.get('utm_content') || '',
           enviado_em: new Date().toISOString()
         };
         try { await enviarLead(lead); } catch (_) {}
