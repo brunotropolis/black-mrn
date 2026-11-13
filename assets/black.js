@@ -64,9 +64,10 @@ window.CONFIG = {
     pinta(); setInterval(pinta, 1000);
   }
 
-  // Máscara (41) 99999-9999
+  // Máscara (41) 99999-9999. Começou com + = número de fora do Brasil (código do país), sem máscara.
   function mascara(input) {
     input.addEventListener('input', () => {
+      if (input.value.trim().startsWith('+')) { input.value = '+' + input.value.replace(/\D/g, '').slice(0, 15); return; }
       let d = input.value.replace(/\D/g, '').slice(0, 11), f = d;
       if (d.length > 2) f = `(${d.slice(0, 2)}) ${d.slice(2)}`;
       if (d.length > 7) f = `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`;
@@ -88,19 +89,29 @@ window.CONFIG = {
   function formularios() {
     document.querySelectorAll('form[data-lead]').forEach(form => {
       const tel = form.querySelector('[name=whatsapp]'); mascara(tel);
+      // Mora fora do Brasil: link pequeno que põe o + (o distribuidor aceita 10 a 15 dígitos com o código do país).
+      const fora = document.createElement('button');
+      fora.type = 'button'; fora.className = 'fora-br'; fora.textContent = 'Mora fora do Brasil? Toque aqui';
+      fora.style.cssText = 'background:none;border:0;box-shadow:none;animation:none;transform:none;padding:2px 0;margin:0 auto;width:auto;min-height:0;color:inherit;opacity:.75;font:inherit;font-size:.8rem;font-weight:400;text-transform:none;letter-spacing:normal;text-decoration:underline;cursor:pointer;display:block';
+      fora.addEventListener('click', () => {
+        tel.value = '+'; tel.placeholder = '+ código do país e número'; tel.setAttribute('autocomplete', 'tel'); tel.focus();
+        fora.textContent = 'Digite o + e o código do país antes do número'; fora.style.textDecoration = 'none';
+      });
+      tel.insertAdjacentElement('afterend', fora);
       form.addEventListener('submit', async e => {
         e.preventDefault();
         if (form.querySelector('[name=site]').value) return; // robô
         const nome = form.querySelector('[name=nome]'), erro = form.querySelector('.erro');
-        const digitos = tel.value.replace(/\D/g, '');
+        const digitos = tel.value.replace(/\D/g, ''), intl = tel.value.trim().startsWith('+');
         erro.textContent = '';
         if (nome && nome.value.trim().length < 2) { erro.textContent = 'Escreve seu nome pra gente te chamar certinho.'; nome.focus(); return; }
-        if (digitos.length < 10) { erro.textContent = 'Confere o WhatsApp com DDD, por favor.'; tel.focus(); return; }
+        if (intl && (digitos.length < 10 || digitos.length > 15)) { erro.textContent = 'Confere o número com o código do país, por favor.'; tel.focus(); return; }
+        if (!intl && digitos.length < 10) { erro.textContent = 'Confere o WhatsApp com DDD, por favor.'; tel.focus(); return; }
         ev('envio', { versao: form.dataset.versao || '' });
-        const btn = form.querySelector('button'); btn.disabled = true; btn.classList.add('enviando');
+        const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.classList.add('enviando');
         const q = new URLSearchParams(location.search);
         const lead = {
-          nome: nome ? nome.value.trim() : '', whatsapp: '55' + digitos,
+          nome: nome ? nome.value.trim() : '', whatsapp: intl ? digitos : '55' + digitos,
           frente: form.dataset.lead, versao: form.dataset.versao || '',
           origem: q.get('origem') || q.get('utm_source') || '', utm_campaign: q.get('utm_campaign') || '', utm_content: q.get('utm_content') || '',
           enviado_em: new Date().toISOString()
