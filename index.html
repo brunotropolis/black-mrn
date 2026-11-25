@@ -333,6 +333,43 @@ footer{padding:26px 18px calc(26px + env(safe-area-inset-bottom));text-align:cen
 <style>html:not(.anim) *,html:not(.anim) *::before,html:not(.anim) *::after{animation-play-state:paused!important}</style><script>addEventListener("load",function(){setTimeout(function(){document.documentElement.classList.add("anim")},400)})</script>
 </head>
 <body>
+<!-- SEMANA DA BLACK MATERNITY (25/11, Bruno): barra no topo igual à dos outros sites da Black (black.js do dbpocket), cores da Black Maternity. Seg a qui: semana seg até sex, conta até sex 23h59 BRT; sex/sáb/dom: conta até meia-noite do dia; renova sozinho. Simular: ?bk_t=2026-11-27T20:00:00-03:00. Tirar depois da Black = apagar este bloco. -->
+<style>
+.bk-bar{position:sticky;top:0;z-index:10000;background:linear-gradient(180deg,#1B0F22 0%,#0C0710 100%);color:#fff;font-family:var(--fd);padding:10px 16px 11px;padding-top:calc(10px + env(safe-area-inset-top));box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.bk-bar:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,#E21F82 30%,#FFC2E0 50%,#E21F82 70%,transparent);background-size:200% 100%;animation:bk-linha 4s linear infinite}
+.bk-in{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.bk-tit{display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.bk-nome{font-size:14px;font-weight:800;letter-spacing:.14em;line-height:1.1;color:#fff;text-transform:uppercase}
+.bk-nome b{color:#FF4FA6;font-weight:900}
+.bk-datas{display:inline-flex;align-items:center;gap:6px;border:1px solid #FF4FA6;background:linear-gradient(180deg,#2a1530,#160b1c);box-shadow:0 0 10px rgba(255,79,166,.25);color:#FF7DBE;border-radius:6px;padding:4px 10px 4px 8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.2;white-space:nowrap}
+.bk-datas i{font-style:normal;color:rgba(255,255,255,.55);font-weight:700}
+.bk-cd{display:flex;align-items:flex-start;gap:3px}
+.bk-cd-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.12em;align-self:center;margin-right:6px;line-height:1.3;text-align:right}
+.bk-n{display:flex;flex-direction:column;align-items:center;gap:3px}
+.bk-n i{font-style:normal;min-width:36px;padding:6px 4px 5px;text-align:center;border-radius:8px;background:linear-gradient(180deg,#2e1736,#1a0d20);border:1px solid rgba(255,79,166,.45);color:#FF4FA6;font-size:18px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.bk-n em{font-style:normal;font-size:9px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.1em}
+.bk-sep{color:rgba(255,79,166,.7);font-weight:800;font-size:15px;line-height:30px;margin:0 -1px}
+.bk-ult .bk-nd,.bk-ult .bk-sd{display:none}
+@media(max-width:560px){.bk-bar{padding:13px 14px 14px;padding-top:calc(13px + env(safe-area-inset-top))}.bk-in{gap:10px}.bk-tit{gap:6px}.bk-nome{font-size:11.5px;letter-spacing:.1em}.bk-datas{font-size:10px;padding:3px 8px 3px 6px}.bk-cd-lbl{display:none}.bk-n i{min-width:30px;font-size:15px;padding:5px 3px 4px}.bk-n em{font-size:8.5px}.bk-sep{font-size:13px;line-height:26px}}
+@media(max-width:350px){.bk-sep{display:none}}
+@keyframes bk-linha{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.bk-bar:after{animation:none}}
+</style>
+<div class="bk-bar" role="region" aria-label="Semana da Black Maternity"><div class="bk-in">
+<div class="bk-tit"><div class="bk-nome">Semana da <b>Black Maternity</b></div><div class="bk-datas"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v2H2V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1zM2 11h20v8a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-8z"/></svg><span class="bk-datas-txt"></span></div></div>
+<div class="bk-cd" aria-live="off"><span class="bk-cd-lbl">termina<br>em</span><div class="bk-n bk-nd"><i class="bk-d">0</i><em>dias</em></div><span class="bk-sep bk-sd">:</span><div class="bk-n"><i class="bk-h">00</i><em>horas</em></div><span class="bk-sep">:</span><div class="bk-n"><i class="bk-m">00</i><em>min</em></div><span class="bk-sep">:</span><div class="bk-n"><i class="bk-s">00</i><em>seg</em></div></div>
+</div></div>
+<script>
+(function(){var OFF=0;try{var q=new URLSearchParams(location.search).get('bk_t');if(q&&!isNaN(Date.parse(q)))OFF=Date.parse(q)-Date.now()}catch(e){}
+function agora(){return Date.now()+OFF}
+function semana(){var b=new Date(agora()-3*3600e3),dow=(b.getUTCDay()+6)%7,hoje=Date.UTC(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate()),ini=hoje-dow*864e5;
+if(dow>=4)return{u:true,ini:new Date(ini),fd:new Date(hoje),fim:hoje+864e5+3*3600e3};var f=ini+5*864e5;return{u:false,ini:new Date(ini),fd:new Date(f-864e5),fim:f+3*3600e3}}
+var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];function dm(d){return d.getUTCDate()+' '+M[d.getUTCMonth()]}
+function $(c){return document.querySelector('.bk-bar .'+c)}
+function tick(){var w=semana();document.documentElement.classList.toggle('bk-ult',w.u);$('bk-datas-txt').innerHTML=dm(w.ini)+' <i>até</i> '+dm(w.fd);
+var t=Math.floor(Math.max(0,w.fim-agora())/1000),p=function(n){return('0'+n).slice(-2)};$('bk-d').textContent=Math.floor(t/86400);$('bk-h').textContent=p(Math.floor(t%86400/3600));$('bk-m').textContent=p(Math.floor(t%3600/60));$('bk-s').textContent=p(t%60)}
+tick();setInterval(tick,1000)})();
+</script>
 
 <header class="hero">
   <div class="wrap hero-grid">
