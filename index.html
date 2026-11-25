@@ -6,6 +6,28 @@
 
 
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+(function(){
+  function gc(n){var m=document.cookie.match('(^|; )'+n+'=([^;]+)');return m?decodeURIComponent(m[2]):'';}
+  function sc(n,v){try{document.cookie=n+'='+v+'; path=/; max-age=7776000; domain=.manualdorecemnascido.com.br; SameSite=Lax';}catch(e){}}
+  if(!gc('_fbp')){sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(1e9+Math.random()*9e9));}
+  if(!gc('_fbc')){try{var f=new URLSearchParams(location.search).get('fbclid');if(f){sc('_fbc','fb.1.'+Date.now()+'.'+f);}}catch(e){}}
+})();
+fbq('init','1131355916179750');
+(function(){
+  function eid(){return Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);}
+  window.trackMeta=function(ev,cd){try{ if(window.fbq) fbq('track',ev,cd||{},{eventID:eid()}); }catch(e){}};
+  trackMeta('PageView');
+  trackMeta('ViewContent',{content_name:'Black Maternity',content_category:'black',value:497,currency:'BRL'});
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1131355916179750&ev=PageView&noscript=1"/></noscript>
+
 <meta name="robots" content="noindex,nofollow">
 <title>Black Maternity 2026 | Todos os cursos da Day</title>
 <meta name="description" content="Entre no grupo VIP de gestantes da Day: aula exclusiva e o maior combo do Manual do Recém-Nascido.">
@@ -467,7 +489,7 @@ footer{padding:26px 18px calc(26px + env(safe-area-inset-bottom));text-align:cen
         <span class="parc"><small>12x de</small><b>R$ 51,10</b></span>
         <span class="vista">ou R$ 497 à vista</span>
       </div>
-      <div class="cta-c"><a class="cta" href="https://payfast.greenn.com.br/143822/offer/4uxUNo?utm_source=bio&utm_medium=pagina-vendas&utm_campaign=black-maternity-2026"><span>Eu quero agora</span><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></div>
+      <div class="cta-c"><a class="cta btn-comprar" href="https://payfast.greenn.com.br/144088/offer/i6iQVi"><span>Eu quero agora</span><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></div>
       <div class="garantias"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Compra 100% segura</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Acesso imediato</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>7 dias de garantia</span></div>
     </div>
   </div>
@@ -527,5 +549,32 @@ footer{padding:26px 18px calc(26px + env(safe-area-inset-bottom));text-align:cen
 </section>
 
 <footer>Manual do Recém-Nascido · Dayane Dos Anjos</footer>
+<script>
+(function(){
+  var p=new URLSearchParams(location.search);
+  var keep=/^(utm_|src$|fbclid|gclid|ttclid|oppref)/i;
+  var pass=new URLSearchParams();
+  p.forEach(function(v,k){if(keep.test(k))pass.append(k,v);});
+  if(!pass.get('utm_campaign')&&p.get('fbclid')){pass.append('utm_source','FB');pass.append('utm_medium','sem-url-tags');pass.append('utm_campaign','[TRAFEGO][BLACK MATERNITY] fallback');}
+  if(!pass.get('utm_source')){pass.append('utm_source','bio');pass.append('utm_medium','pagina-vendas');pass.append('utm_campaign','black-maternity-2026');}
+  function gc(n){var m=document.cookie.match('(^|; )'+n+'=([^;]+)');return m?decodeURIComponent(m[2]):'';}
+  var fbp=gc('_fbp');if(fbp)pass.append('fbp',fbp);
+  var fbc=gc('_fbc');if(fbc)pass.append('fbc',fbc);
+  try{pass.append('ua',navigator.userAgent);}catch(e){}
+  var s=pass.toString();
+  document.querySelectorAll('a.btn-comprar').forEach(function(a){a.href+=(a.href.indexOf('?')>-1?'&':'?')+s;});
+})();
+document.querySelectorAll('a.btn-comprar').forEach(function(a){
+  a.addEventListener('click',function(e){
+    if(e.ctrlKey||e.metaKey||e.shiftKey||e.button)return;
+    if(a.getAttribute('data-ic'))return;
+    a.setAttribute('data-ic','1');
+    e.preventDefault();
+    var dest=a.href;
+    if(window.trackMeta) window.trackMeta('InitiateCheckout',{content_name:'Black Maternity',value:497,currency:'BRL'});
+    setTimeout(function(){window.location.href=dest;},250);
+  });
+});
+</script>
 </body>
 </html>
